@@ -67,6 +67,7 @@ using namespace std;
 
 static const string MC_REGISTRY_CONTAINER_PATH = "/data/app/mcRegistry";
 static const string MC_REGISTRY_DEFAULT_PATH = "/system/app/mcRegistry";
+static const string MC_REGISTRY_VENDOR_PATH = "/vendor/app/mcRegistry";
 static const string MC_REGISTRY_FALLBACK_PATH = "/data/app/mcRegistry";
 static const string AUTH_TOKEN_FILE_NAME = "00000000.authtokcont";
 static const string ROOT_FILE_NAME = "00000000.rootcont";
@@ -130,8 +131,12 @@ static string getTlRegistryPath()
     if (doesDirExist(MC_REGISTRY_DEFAULT_PATH.c_str())) {
         registryPath = MC_REGISTRY_DEFAULT_PATH;
         LOG_I("getTlRegistryPath(): Using MC_REGISTRY_PATH %s", registryPath.c_str());
+    } else if (doesDirExist(MC_REGISTRY_VENDOR_PATH.c_str())) {
+        // Second, attempt to use regular registry environment variable.
+        registryPath = MC_REGISTRY_VENDOR_PATH;
+        LOG_I(" Using MC_REGISTRY_VENDOR_PATH %s", registryPath.c_str());
     } else if (doesDirExist(MC_REGISTRY_FALLBACK_PATH.c_str())) {
-        // Second, attempt to use fallback registry environment variable.
+        // Third, attempt to use fallback registry environment variable.
         registryPath = MC_REGISTRY_FALLBACK_PATH;
         LOG_I("getTlRegistryPath(): Using MC_REGISTRY_FALLBACK_PATH %s", registryPath.c_str());
     }
