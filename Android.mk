@@ -15,7 +15,7 @@
 #
 
 ifeq ($(TARGET_BOARD_PLATFORM), exynos5)
-ifeq ($(TARGET_SLSI_VARIANT), cm)
+ifeq ($(TARGET_SLSI_VARIANT), bsp)
 ifeq ($(TARGET_SOC), exynos5420)
 
 exynos5420_dirs := \
@@ -31,11 +31,6 @@ exynos5420_dirs += \
 	libvirtualdisplaymodule
 endif
 
-ifeq ($(BOARD_USES_TRUST_KEYMASTER), true)
-exynos5420_dirs += \
-	libkeymaster
-endif
-    
 include $(call all-named-subdir-makefiles,$(exynos5420_dirs))
 
 endif
