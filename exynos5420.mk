@@ -16,7 +16,19 @@
 
 # Video Codecs
 PRODUCT_PACKAGES += \
-	libOMX.Exynos.VP8.Encoder
+	libOMX.Exynos.AVC.Decoder \
+	libOMX.Exynos.AVC.Encoder \
+	libOMX.Exynos.MPEG4.Decoder \
+	libOMX.Exynos.MPEG4.Encoder \
+	libOMX.Exynos.VP8.Decoder \
+	libOMX.Exynos.VP8.Encoder \
+	libOMX.Exynos.WMV.Decoder
+
+# stagefright and device specific modules
+PRODUCT_PACKAGES += \
+	libstagefrighthw \
+	libExynosOMX_Core \
+	libExynosOMX_Resourcemanager
 
 # Keymaster
 ifeq ($(BOARD_USES_TRUST_KEYMASTER), true)
